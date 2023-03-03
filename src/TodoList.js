@@ -39,7 +39,7 @@ const TodoList = () => {
   ];
   const [listTodos, setListTodos] = useState(staticData);
   const createTodo = (newTodo) => {
-    setListTodos([...listTodos, ...newTodo]);
+    setListTodos([...newTodo, ...listTodos]);
   };
   function removeTodoByID(id) {
     setListTodos(listTodos.filter((toDoItem) => toDoItem.id !== id));
