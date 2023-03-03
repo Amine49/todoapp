@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./AddTodoForm.css";
 
 export default function AddTodoForm({ createTodo }) {
   let createdTodo = { name: "", description: "", finished: false };
@@ -17,7 +18,7 @@ export default function AddTodoForm({ createTodo }) {
     setInputDescription("");
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="AddTodoForm" onSubmit={handleSubmit}>
       <label htmlFor="newTodo"> new Todo </label>
       <input
         type={"text"}
