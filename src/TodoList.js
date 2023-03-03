@@ -1,23 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
+import AddTodoForm from "./AddTodoForm";
 import Todo from "./Todo";
+import { v4 as uuid } from "uuid";
+import "./TodoList.css";
 
-const TodoList = ({ listTodos }) => {
+const TodoList = () => {
+  let staticData = [
+    {
+      name: "List my TODOs",
+      description: "First Digital Factory task",
+      finished: false,
+    },
+    {
+      name: "Change a TODO state",
+      description: "Second Digital Factory task",
+      finished: false,
+    },
+    {
+      name: "Detail a TODO",
+      description: "Third Digital Factory task",
+      finished: false,
+    },
+    {
+      name: "Add a new TODO",
+      description: "Fourth Digital Factory task",
+      finished: false,
+    },
+    {
+      name: "Configure Docker",
+      description: "Fifth Digital Factory task",
+      finished: false,
+    },
+    {
+      name: "Push the app on GitHub",
+      description: "Last Digital Factory task",
+      finished: false,
+    },
+  ];
+  const [listTodos, setListTodos] = useState(staticData);
+  const createTodo = (newTodo) => {
+    setListTodos([...listTodos, ...newTodo]);
+  };
+  function removeTodoByID(id) {
+    setListTodos(listTodos.filter((toDoItem) => toDoItem.id !== id));
+  }
+  const toggleTodo = (id) => {
+    setListTodos(
+      listTodos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, finished: !todo.finished };
+        }
+        return todo;
+      })
+    );
+  };
   return (
-    <div>
-      <h1>Todo List</h1>
-      <ul>
-        {listTodos.map((todo, index) => {
-          return (
-            <li>
-              <Todo
-                key={index}
-                name={todo.name}
-                description={todo.description}
-              />
-            </li>
-          );
-        })}
-      </ul>
+    <div className="TodoList">
+      <h1> Todo List </h1> <span> A Digital Factory React App</span>
+      {listTodos.map((todo, index) => {
+        todo.id = uuid();
+        console.log(todo);
+        return (
+          <ul key={todo.id}>
+            <Todo
+              name={todo.name}
+              description={todo.description}
+              removeTodo={() => removeTodoByID(todo.id)}
+              finished={todo.finished}
+              toggleTodo={() => toggleTodo(todo.id)}
+            />
+          </ul>
+        );
+      })}
+      <AddTodoForm createTodo={createTodo} />
     </div>
   );
 };
