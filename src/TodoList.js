@@ -53,12 +53,16 @@ const TodoList = () => {
     });
     return index;
   };
+  const placeTodoAtTop = (id) => {
+    let index = getTodoIndex(id);
+    setListTodos(listTodos.unshift(listTodos.splice(index, 1)[0]));
+  };
   const placeTodoAtEnd = (id) => {
     let index = getTodoIndex(id);
     setListTodos(listTodos.push(listTodos.splice(index, 1)[0]));
   };
-  const toggleTodo = (id) => {
-    placeTodoAtEnd(id);
+  const toggleTodo = (id, finishedTodo) => {
+    !finishedTodo ? placeTodoAtEnd(id) : placeTodoAtTop(id);
     setListTodos(
       listTodos.map((todo) => {
         if (todo.id === id) {
@@ -80,7 +84,7 @@ const TodoList = () => {
               description={todo.description}
               removeTodo={() => removeTodoByID(todo.id)}
               finished={todo.finished}
-              toggleTodo={() => toggleTodo(todo.id)}
+              toggleTodo={() => toggleTodo(todo.id, todo.finished)}
             />
           </ul>
         );
