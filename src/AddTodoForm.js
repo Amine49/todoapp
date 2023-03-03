@@ -3,17 +3,29 @@ import React, { useState } from "react";
 export default function AddTodoForm({ createTodo }) {
   let createdTodo = { name: "", description: "", finished: false };
   const [newTodo, setNewTodo] = useState(createdTodo);
-  let [inputValue, setInputValue] = useState("");
-  const handleChange = (e) => {
-    setInputValue(e.target.value);
-    createdTodo.name = e.target.value;
-    setNewTodo([createdTodo]);
+  let [inputName, setInputName] = useState("");
+  let [inputDescription, setInputDescription] = useState("");
+  const handleNameChange = (e) => {
+    setInputName(e.target.value);
+    createdTodo = { ...newTodo, name: e.target.value };
+    setNewTodo(createdTodo);
+    // console.log("handleName", newTodo);
+  };
+  const handleDescriptionChange = (e) => {
+    createdTodo = { ...newTodo, description: e.target.value };
+    console.log(createdTodo);
+    setInputDescription(e.target.value);
+    setNewTodo(createdTodo);
+    // console.log("handleDescript", newTodo);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    createdTodo.name = "";
-    inputValue.length > 0 && createTodo(newTodo);
-    setInputValue("");
+    // createdTodo.name = "";
+    // createdTodo.description = "";
+    console.log("handleSubmit", newTodo);
+    inputName.length > 0 && createTodo([newTodo]);
+    setInputName("");
+    setInputDescription("");
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -23,8 +35,16 @@ export default function AddTodoForm({ createTodo }) {
         placeholder={"Add new TODO"}
         id="newTodo"
         name="newTodo"
-        value={inputValue}
-        onChange={handleChange}
+        value={inputName}
+        onChange={handleNameChange}
+      />
+      <input
+        type={"text"}
+        placeholder={"Description"}
+        id="newTodo"
+        name="newTodo"
+        value={inputDescription}
+        onChange={handleDescriptionChange}
       />
       <button type="submit">Add Todo !</button>
     </form>
