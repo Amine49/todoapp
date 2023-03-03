@@ -9,19 +9,15 @@ export default function AddTodoForm({ createTodo }) {
     setInputName(e.target.value);
     createdTodo = { ...newTodo, name: e.target.value };
     setNewTodo(createdTodo);
-    // console.log("handleName", newTodo);
   };
   const handleDescriptionChange = (e) => {
     createdTodo = { ...newTodo, description: e.target.value };
     console.log(createdTodo);
     setInputDescription(e.target.value);
     setNewTodo(createdTodo);
-    // console.log("handleDescript", newTodo);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // createdTodo.name = "";
-    // createdTodo.description = "";
     console.log("handleSubmit", newTodo);
     inputName.length > 0 && createTodo([newTodo]);
     setInputName("");
