@@ -1,0 +1,37 @@
+.AddTodoForm {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.AddTodoForm label {
+  min-width: 100%;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+.AddTodoForm input {
+  flex-grow: 1;
+  border: none;
+  background: white;
+  padding: 0 1.5em;
+  font-size: initial;
+}
+.AddTodoForm button {
+  padding: 0 1.3rem;
+  border: none;
+  background: #ff6666;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-left: 5px;
+  cursor: pointer;
+  transition: background 0.2 ease-out;
+}
+.AddTodoForm button:hover {
+  background: #ff5e5e;
+}
+.AddTodoForm button,
+.AddTodoForm input {
+  font-family: "Quicksand", sans-serif;
+  height: 3rem;
+}
