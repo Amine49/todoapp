@@ -2,41 +2,9 @@ import React, { useState } from "react";
 import AddTodoForm from "./AddTodoForm";
 import Todo from "./Todo";
 import { v4 as uuid } from "uuid";
-import "./TodoList.css";
-
+import "../style/TodoList.css";
+import staticData from "../mockData/staticData";
 const TodoList = () => {
-  let staticData = [
-    {
-      name: "List my TODOs",
-      description: "First Digital Factory task",
-      finished: false,
-    },
-    {
-      name: "Change a TODO state",
-      description: "Second Digital Factory task",
-      finished: false,
-    },
-    {
-      name: "Detail a TODO",
-      description: "Third Digital Factory task",
-      finished: false,
-    },
-    {
-      name: "Add a new TODO",
-      description: "Fourth Digital Factory task",
-      finished: false,
-    },
-    {
-      name: "Configure Docker",
-      description: "Fifth Digital Factory task",
-      finished: false,
-    },
-    {
-      name: "Push the app on GitHub",
-      description: "Last Digital Factory task",
-      finished: false,
-    },
-  ];
   const [listTodos, setListTodos] = useState(staticData);
   const createTodo = (newTodo) => {
     setListTodos([...newTodo, ...listTodos]);
