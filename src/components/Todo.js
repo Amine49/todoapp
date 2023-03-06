@@ -1,5 +1,5 @@
 import React from "react";
-import "./Todo.css";
+import "../style/Todo.css";
 
 const Todo = ({ name, description, removeTodo, finished, toggleTodo }) => {
   return (
